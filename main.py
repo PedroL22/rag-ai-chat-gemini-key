@@ -9,8 +9,8 @@ from llama_index.core import (
     VectorStoreIndex,
     load_index_from_storage,
 )
-from llama_index.embeddings.google_genai import GoogleGenAIEmbedding
-from llama_index.llms.google_genai import GoogleGenAI
+from llama_index.embeddings.gemini import GeminiEmbedding
+from llama_index.llms.gemini import Gemini
 
 load_dotenv()
 
@@ -29,10 +29,8 @@ if not GOOGLE_API_KEY:
 print("Starting RAG AI Chat with Gemini API...")
 
 # Configure Gemini models
-llm = GoogleGenAI(model_name=MODEL_NAME, api_key=GOOGLE_API_KEY)
-embed_model = GoogleGenAIEmbedding(
-    model_name="models/embedding-001", api_key=GOOGLE_API_KEY
-)
+llm = Gemini(model_name=MODEL_NAME, api_key=GOOGLE_API_KEY)
+embed_model = GeminiEmbedding(model_name="models/embedding-001", api_key=GOOGLE_API_KEY)
 
 Settings.llm = llm
 Settings.embed_model = embed_model
